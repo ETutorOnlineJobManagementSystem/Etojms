@@ -1,9 +1,10 @@
 import React from "react";
 import {  Route, Routes, Navigate  } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle";
 import StartPage from "./screens/startpage/start";
 import Login from "./screens/login/login";
+import './App.css';
 const App = () => {
   return (
     <>
