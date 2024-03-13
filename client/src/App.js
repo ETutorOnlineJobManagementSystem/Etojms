@@ -5,6 +5,7 @@ import {  Route, Routes, Navigate  } from "react-router-dom";
 import StartPage from "./screens/startpage/start";
 import Login from "./screens/login/login";
 import './App.css';
+import Homepage from "./screens/homepage/homepage";
 const App = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" Component={StartPage}/>
         <Route path="*" element={<Navigate replace to={"/"} />} />       
         <Route path="/login" Component={Login}/>
+        <Route path="/home" Component={Homepage}/>
       </Routes>
     </>
   );
