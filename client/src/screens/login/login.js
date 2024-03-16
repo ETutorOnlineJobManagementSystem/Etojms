@@ -1,49 +1,52 @@
-// Import necessary React components and hooks
 import React, { useState } from 'react';
+import log from '../../images/log.jpg'; // Replace with the path to your background image
 
-
-// Functional component for the login page
 const Login = () => {
-  // State to manage the input values
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle form submission
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // You can add authentication logic here (e.g., API request)
-    // For simplicity, let's just log the credentials for now
-    console.log('Username:', username);
-    console.log('Password:', password);
-
-    // You can redirect the user to another page after successful login
-    // For now, let's just clear the form
-    setUsername('');
-    setPassword('');
-  };
+    // Handle form submission here
+  }
 
   return (
     <>
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <form class="max-w-sm mx-auto">
-            <div class="mb-2">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                <input type="email" id="email" className=" input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-            </div>
-            <div class="mb-2">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-            </div>
-            <div class="flex items-start mb-2">
-                <div class="flex items-center h-5">
-                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+        <div style={{ backgroundImage: `url(${log})`, height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
+        <div className="bg-white p-10 rounded-lg shadow-2xl">
+            <div className='flex'>
+                <div>
+
                 </div>
-                <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+                <div>
+                <h1 className="text-sm">VLEARN</h1>
+                </div>
             </div>
-            <button type="submit" class="bg-blue-700 hover:bg-blue-800 w-10">Submit</button>
-        </form>
-    </div>   
+            <form onSubmit={handleSubmit}>
+            <h1 className="text-3xl font-bold mb-8">Login</h1>
+            <label className="block mb-3">
+                Email:
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </label>
+            <label className="block mb-3">
+                Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </label>
+            <div className='flex'>
+                <div>
+                    <input type="checkbox"/>
+                </div>
+                <div className='ml-2'>
+                    <h1 className='text-sm'>Remember me</h1>
+                </div>
+            </div>
+            <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                Login
+            </button>
+            </form>
+        </div>
+
+        </div>
     </>
   );
 };
