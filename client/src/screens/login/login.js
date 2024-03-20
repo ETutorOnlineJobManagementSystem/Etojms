@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import log from '../../images/log.jpg'; // Replace with the path to your background image
-import { FaGoogle } from 'react-icons/fa';
-import { MdCastForEducation } from "react-icons/md";
+import { FaGraduationCap } from "react-icons/fa";
 
 const Alert = ({ message, type }) => {
   const alertClasses = {
@@ -29,20 +28,16 @@ const Login = () => {
     if (!email && !password) {
       setAlertMessage('Please enter all details');
       setAlertType('error');
-    } 
-    else if (!email) {
+    } else if (!email) {
         setAlertMessage('Please enter email to continue');
         setAlertType('error');
-    }  
-    else if (!isValidEmail(email)) {
+    } else if (!isValidEmail(email)) {
       setAlertMessage('Please enter a valid email');
       setAlertType('error');
-    } 
-    else if (!password) {
+    } else if (!password) {
         setAlertMessage('Please enter a password to continue');
         setAlertType('error');
-    }
-    else if (!isValidPassword(password)) {
+    } else if (!isValidPassword(password)) {
       setAlertMessage('Please enter a valid password (minimum 6 characters)');
       setAlertType('error');
     } else {
@@ -67,13 +62,18 @@ const Login = () => {
     return password.length >= 6;
   }
 
+  const handlePasswordClick = () => {
+    // Redirect to login page
+    window.location.href = '/forgetpassword'; // Change '/login' to your actual login page URL
+  };
+
   return (
     <>
       <div style={{ backgroundImage: `url(${log})`, height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
         <div className="bg-white p-10 rounded-lg shadow-2xl">
           <div className='flex items-center'>
             <div>
-                <MdCastForEducation/>
+                <FaGraduationCap className='text-xl'/>
             </div>
             <div className='ml-1'>
               <h1 className="text-sm">VLEARN</h1>
@@ -90,23 +90,18 @@ const Login = () => {
               Password:
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </label>
-            <div className='flex'>
-              <div>
-                <input type="checkbox" />
-              </div>
-              <div className='ml-2'>
-                <h1 className='text-sm'>Remember me</h1>
-              </div>
+            <div className='flex items-center'>
+              <input type="checkbox" className="mr-1" />
+              <label className="text-sm flex items-center">
+                Remember me
+              </label>
+              <span className="text-sm text-blue-600 hover:underline ml-auto cursor-pointer" onClick={handlePasswordClick}>
+                Forgot Password?
+              </span>
             </div>
             <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
               Login
             </button>
-            <div className="mt-4">
-              <button className="flex items-center justify-center w-full py-2 bg-red-600 hover:bg-red-500 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                <FaGoogle className="mr-2" />
-                Login with Google
-              </button>
-            </div>
           </form>
         </div>
       </div>

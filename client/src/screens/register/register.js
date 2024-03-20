@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { FaGoogle } from 'react-icons/fa'; // Import Google icon
 import log from '../../images/log.jpg'; // Replace with the path to your background image
-import { MdCastForEducation } from "react-icons/md";
+import { FaGraduationCap } from "react-icons/fa";
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -22,7 +21,7 @@ const Register = () => {
         <div className="bg-white p-10 rounded-lg shadow-2xl">
           <div className='flex items-center'>
             <div>
-                <MdCastForEducation/>
+            <FaGraduationCap className='text-xl'/>
             </div>
             <div className='ml-1'>
               <h1 className="text-sm">VLEARN</h1>
@@ -63,12 +62,6 @@ const Register = () => {
               Register
             </button>
           </form>
-          <div className="mt-4">
-            <button className="flex items-center justify-center w-full py-2 bg-red-600 hover:bg-red-500 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-              <FaGoogle className="mr-2" />
-              Register with Google
-            </button>
-          </div>
         </div>
       </div>
     </>
