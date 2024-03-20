@@ -63,8 +63,13 @@ const Login = () => {
   }
 
   const handlePasswordClick = () => {
-    // Redirect to login page
-    window.location.href = '/forgetpassword'; // Change '/login' to your actual login page URL
+    // Redirect to password reset page
+    window.location.href = '/forgetpassword'; // Change '/forgetpassword' to your actual password reset page URL
+  };
+
+  const handleRegisterClick = () => {
+    // Redirect to registration page
+    window.location.href = '/register'; // Change '/register' to your actual registration page URL
   };
 
   return (
@@ -90,15 +95,26 @@ const Login = () => {
               Password:
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </label>
-            <div className='flex items-center'>
-              <input type="checkbox" className="mr-1" />
-              <label className="text-sm flex items-center">
-                Remember me
-              </label>
-              <span className="text-sm text-blue-600 hover:underline ml-auto cursor-pointer" onClick={handlePasswordClick}>
-                Forgot Password?
-              </span>
-            </div>
+            <div className='flex'>
+                <input type="checkbox" className="mr-1" />
+                <label className="text-sm flex items-center">
+                  Remember me
+                </label>
+              </div>
+
+              <div className='mt-3'>
+                <div className='flex items-center justify-between'>
+                  <span className="text-sm text-blue-600 hover:underline cursor-pointer" onClick={handlePasswordClick}>
+                    Forgot Password?
+                  </span>
+                  <span className="text-sm text-blue-600 hover:underline cursor-pointer" onClick={handleRegisterClick}>
+                    Register
+                  </span>
+                </div>
+              </div>
+            
+
+            
             <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
               Login
             </button>
