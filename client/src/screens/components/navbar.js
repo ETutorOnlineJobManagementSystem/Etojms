@@ -35,25 +35,25 @@ const NavBar = () => {
       {/* Left section */}
       <div className="flex items-center">
         {/* Site Name */}
-        <h1 className="text-white font-semibold">E-Tutor</h1>
+        <h1 className="text-white font-bold text-4xl p-3">E-Tutor</h1>
         {/* Courses */}
-        <a href="#" className="text-white">Courses</a>
+        <a href="#" className="text-white font-bold">Courses</a>
         {/* Categories with dropdown */}
         <div className="relative">
-          <button onClick={toggleCategories} className="text-white ml-4">Categories</button>
+          <button onClick={toggleCategories} className="text-white font-bold ml-4">Categories</button>
           {isCategoriesOpen && (
             <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Web</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Java</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Python</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Testing</a>
+              <a href="#" className="block px-4 py-2 font-bold text-gray-800 hover:bg-gray-200">Web</a>
+              <a href="#" className="block px-4 py-2 font-bold text-gray-800 hover:bg-gray-200">Java</a>
+              <a href="#" className="block px-4 py-2 font-bold text-gray-800 hover:bg-gray-200">Python</a>
+              <a href="#" className="block px-4 py-2 font-bold text-gray-800 hover:bg-gray-200">Testing</a>
             </div>
           )}
         </div>
         {/* Sessions */}
-        <a href="#" className="text-white ml-4" onClick={handleSessClick}>Sessions</a>
-        <a href="#" className="text-white ml-4">My Learning</a>
-        <a href="#" className="text-white ml-4">Payments</a>
+        <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
+        <a href="#" className="text-white font-bold ml-4">My Learning</a>
+        <a href="#" className="text-white font-bold ml-4">Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">
