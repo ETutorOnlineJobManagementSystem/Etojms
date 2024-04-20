@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import log from '../../images/log.jpg'; // Replace with the path to your background image
 import { FaGraduationCap } from "react-icons/fa";
 import { Link} from 'react-router-dom';
 
-const Register = () => {
+const Tutor_Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,11 +16,7 @@ const Register = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [loginSuccessful, setLoginSuccessful] = useState('');
-
-
-
-
+  const [LoginSuccessful, setLoginSuccessful] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,43 +35,59 @@ const Register = () => {
     if (!firstName) {
       setFirstNameError('First name is required');
       isValid = false;
+      setTimeout(() => {
+        setFirstNameError("");
+    }, 2000);
     }
 
     if (!lastName) {
       setLastNameError('Last name is required');
       isValid = false;
+      setTimeout(() => {
+        setLastNameError("");
+    }, 2000);
     }
 
     if (!email) {
       setEmailError('Email is required');
       isValid = false;
+      setTimeout(() => {
+        setEmailError("");
+    }, 2000);
     }
 
     if (!password) {
       setPasswordError('Password is required');
       isValid = false;
+      setTimeout(() => {
+        setPasswordError("");
+    }, 2000);
     }
 
     if (!confirmPassword) {
       setConfirmPasswordError('Please confirm password');
       isValid = false;
+      setTimeout(() => {
+        setConfirmPasswordError("");
+    }, 2000);
     }
 
     if (password !== confirmPassword) {
       setConfirmPasswordError('Passwords do not match');
       isValid = false;
+      setTimeout(() => {
+        setConfirmPasswordError("");
+    }, 2000);
     }
 
     if (isValid) {
-      // Handle form submission here
-      console.log('Form submitted successfully');
       setLoginSuccessful('Registration Successful');
     }
   };
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${log})`, height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
+      <div style={{ backgroundImage: `url('https://wallpaperaccess.com/full/2314950.jpg')`, height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
         <div className="bg-white p-10 rounded-lg shadow-2xl">
           <div className='flex items-center'>
             <div>
@@ -87,7 +98,7 @@ const Register = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold mb-8">Register</h1>
+            <h1 className="text-3xl font-bold mb-8"> Tutor Register</h1>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <label>
                 First Name:
@@ -117,15 +128,17 @@ const Register = () => {
               <label>
                 User:
                 <select value={userType} onChange={(e) => setUserType(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option value="student">Student</option>
+                <option value="tutor">Tutor</option>  
+               
+                  
                 </select>
               </label>
             </div>
             <div className='flex justify-between items-center mb-4'>
               <p>Already Member?</p>
-              <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
+              <Link to="/tutorlogin" className="text-blue-600 hover:underline">Login</Link>
             </div>
-            {loginSuccessful && <p className="text-green-600 text-sm mt-2">{loginSuccessful}</p>}
+            {LoginSuccessful && <p className="text-green-600 text-sm mt-2">{LoginSuccessful}</p>}
             <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
               Register
             </button>
@@ -136,4 +149,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Tutor_Register;

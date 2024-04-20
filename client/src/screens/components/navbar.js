@@ -36,7 +36,7 @@ const NavBar = () => {
       {/* Left section */}
       <div className="flex items-center">
         {/* Site Name */}
-        <h1 className="text-white font-semibold">E-Tutor</h1>
+        <h1 className="text-white font-bold text-4xl p-3">E-Tutor</h1>
         {/* Courses */}
         <a href="#" className="text-white ml-4">Courses</a>
         {/* Categories with dropdown */}
@@ -66,9 +66,9 @@ const NavBar = () => {
           )}
         </div>
         {/* Sessions */}
-        <a href="#" className="text-white ml-4" onClick={handleSessClick}>Sessions</a>
-        <a href="#" className="text-white ml-4">My Learning</a>
-        <a href="#" className="text-white ml-4">Payments</a>
+        <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
+        <a href="#" className="text-white font-bold ml-4">My Learning</a>
+        <a href="#" className="text-white font-bold ml-4">Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">
