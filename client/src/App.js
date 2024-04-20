@@ -38,6 +38,7 @@ const App = () => {
         <Route path="/forgetpassword" Component={Forgetpassword}/>
         <Route path="/reset" Component={Reset}/>
         <Route path="/cart" Component={Cart}/>
+        
         <Route path="/notifications" Component={NotificationPage}/>
         <Route path="/sessions" Component={SessionsPage}/>
         <Route path="/" element={<CourseCard />} />
