@@ -23,6 +23,10 @@ import TutorDashboard from "./screens/components/dashboard";
 import ProfilePage from "./screens/tutor/profile_edit";
 import Lesson from "./screens/tutor/lesson_mat";
 import { Info, Analytics, MaterialCard, MaterialPreview, MaterialList, SearchBar, FilterOptions, FolderTree, UploadButton } from "./screens/tutor/info.js";
+import Web from "./screens/components/web.js";
+import Python from "./screens/components/python.js";
+import Java from "./screens/components/java.js";
+import Testing from "./screens/components/testing.js";
 
 const App = () => {
   return (
@@ -38,6 +42,10 @@ const App = () => {
         <Route path="/forgetpassword" Component={Forgetpassword}/>
         <Route path="/reset" Component={Reset}/>
         <Route path="/cart" Component={Cart}/>
+        <Route path="/web" Component={Web}/>
+        <Route path="/python" Component={Python}/>
+        <Route path="/java" Component={Java}/>
+        <Route path="/testing" Component={Testing}/>
         
         <Route path="/notifications" Component={NotificationPage}/>
         <Route path="/sessions" Component={SessionsPage}/>

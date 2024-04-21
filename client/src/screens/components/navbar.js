@@ -14,6 +14,10 @@ const NavBar = () => {
     // Redirect to login page
     window.location.href = '/login'; // Change '/login' to your actual login page URL
   };
+  const handlePaymentClick = () => {
+    // Redirect to login page
+    window.location.href = '/payment'; // Change '/login' to your actual login page URL
+  };
   const handleCartClick = () => {
     // Redirect to login page
     window.location.href = '/cart'; // Change '/login' to your actual login page URL
@@ -46,19 +50,19 @@ const NavBar = () => {
           </button>
           {isCategoriesOpen && (
             <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+              <a href="/web" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
                 <FaGlobe className="mr-2" />
                 <span>Web</span>
               </a>
-              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+              <a href="/java" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
                 <FaCoffee className="mr-2" />
                 <span>Java</span>
               </a>
-              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+              <a href="/python" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
                 <FaPython className="mr-2" />
                 <span>Python</span>
               </a>
-              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+              <a href="/testing" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
                 <FaCheckCircle className="mr-2" />
                 <span>Testing</span>
               </a>
@@ -68,7 +72,7 @@ const NavBar = () => {
         {/* Sessions */}
         <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
         <a href="#" className="text-white font-bold ml-4">My Learning</a>
-        <a href="#" className="text-white font-bold ml-4">Payments</a>
+        <a href="#" className="text-white font-bold ml-4" onClick={handlePaymentClick}>Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">
