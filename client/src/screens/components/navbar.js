@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaUserCircle, FaShoppingCart, FaBell, FaSearch } from 'react-icons/fa';
+import { FaUserCircle, FaShoppingCart, FaBell, FaSearch, FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import { FaGlobe, FaCoffee, FaPython, FaCheckCircle } from 'react-icons/fa';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -35,33 +36,47 @@ const NavBar = () => {
       {/* Left section */}
       <div className="flex items-center">
         {/* Site Name */}
-        <h1 className="text-white font-semibold">E-Tutor</h1>
+        <h1 className="text-white font-bold text-4xl p-3">E-Tutor</h1>
         {/* Courses */}
-        <a href="#" className="text-white">Courses</a>
+        <a href="#" className="text-white ml-4">Courses</a>
         {/* Categories with dropdown */}
         <div className="relative">
-          <button onClick={toggleCategories} className="text-white ml-4">Categories</button>
+          <button onClick={toggleCategories} className="text-white ml-4 flex items-center">
+            Categories {isCategoriesOpen ? <FaAngleUp className="ml-1" /> : <FaAngleDown className="ml-1" />}
+          </button>
           {isCategoriesOpen && (
             <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Web</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Java</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Python</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Testing</a>
+              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+                <FaGlobe className="mr-2" />
+                <span>Web</span>
+              </a>
+              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+                <FaCoffee className="mr-2" />
+                <span>Java</span>
+              </a>
+              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+                <FaPython className="mr-2" />
+                <span>Python</span>
+              </a>
+              <a href="#" className="block flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200">
+                <FaCheckCircle className="mr-2" />
+                <span>Testing</span>
+              </a>
             </div>
           )}
         </div>
         {/* Sessions */}
-        <a href="#" className="text-white ml-4" onClick={handleSessClick}>Sessions</a>
-        <a href="#" className="text-white ml-4">My Learning</a>
-        <a href="#" className="text-white ml-4">Payments</a>
+        <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
+        <a href="#" className="text-white font-bold ml-4">My Learning</a>
+        <a href="#" className="text-white font-bold ml-4">Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">
-          <input type="text" placeholder="Search..." className="px-2 py-1 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" />
-          <button className="text-white ml-2">
+        <input type="text" placeholder="Search..." className="px-2 py-1 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" />
+        <button className="text-white ml-2">
           <FaSearch />
-          </button>
-        </div>
+        </button>
+      </div>
 
       {/* Right section */}
       <div className="flex items-center">

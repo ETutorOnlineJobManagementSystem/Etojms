@@ -1,18 +1,26 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import javaimg from "../../images/javaimg.png"
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-const CourseCard = () => {
+const CourseCard = (props) => {
+  const navigate = useNavigate(); // Get navigate function
+
+  const handleEnrollClick = (event) => {
+    event.preventDefault(); // Prevent default form submission
+    navigate('/enroll');
+  };
+  
+
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mb-8">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 w-100 h-1000">
       {/* Course photo */}
-      <img src={javaimg} alt="Course" className="w-full h-48 object-cover" />
+      <img src={props.img} alt="Course" className="w-full h-70 object-cover" />
 
       <div className="p-4">
         {/* Course name */}
-        <h3 className="text-xl font-semibold mb-2">Java Advanced to Expert</h3>
+        <h3 className="text-xl font-semibold mb-2">{props.name}</h3>
         {/* Small description */}
-        <p className="text-gray-600 text-sm mb-4">Deep Dive in Core Java programming -Standard Edition. A Practical approach to learn Java. Become a Java Expert</p>
+        <p className="text-gray-600 text-sm mb-4">{props.text}</p>
         {/* Rating */}
         <div className="flex items-center mb-2">
           {[...Array(5)].map((_, index) => (
@@ -20,9 +28,17 @@ const CourseCard = () => {
           ))}
         </div>
         {/* Hours of course */}
-        <p className="text-gray-600 text-sm mb-2">Hours: 20</p>
-        {/* Price */}
-        <p className="text-green-600 font-semibold">₹3999</p>
+        <p className="text-gray-600 text-sm mb-2">{props.time}</p>
+        {/* Price and Enroll button */}
+        <div className="flex items-center justify-between">
+          <p className="text-green-600 font-semibold">{props.cost}</p>
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
+            onClick={handleEnrollClick}
+          >
+            Enroll Now
+          </button>
+        </div>
       </div>
     </div>
   );

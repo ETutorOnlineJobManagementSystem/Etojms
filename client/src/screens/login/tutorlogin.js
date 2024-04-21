@@ -1,65 +1,54 @@
-// Login.js
 import React, { useState } from 'react';
-import log from '../../images/log.jpg'; // Replace with the path to your background image
 import { FaGraduationCap } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom'; 
-import Alert from './Alert'; // Import the Alert component
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Alert = ({ message, type }) => {
+  const alertClasses = {
+    error: "bg-red-100 border border-red-400 text-red-700",
+    success: "bg-green-100 border border-green-400 text-green-700"
+  };
+
+  return (
+    <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded text-xl shadow-md ${alertClasses[type]}`}>
+      <strong className="font-semibold">{type === 'error' ? 'Error: ' : 'Success: '}</strong>
+      <span className="block sm:inline">{message}</span>
+    </div>
+  );
+};
+
+const Tutor = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
-  const navigate = useNavigate();
-
+const navigate = useNavigate('');
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!email && !password) {
       setAlertMessage('Please enter all details');
       setAlertType('error');
-      setTimeout(() => {
-        setAlertMessage("");
-    }, 2000);
     } else if (!email) {
         setAlertMessage('Please enter email to continue');
         setAlertType('error');
-        setTimeout(() => {
-          setAlertMessage("");
-      }, 2000);
     } else if (!isValidEmail(email)) {
       setAlertMessage('Please enter a valid email');
       setAlertType('error');
-      setTimeout(() => {
-        setAlertMessage("");
-    }, 2000);
     } else if (!password) {
         setAlertMessage('Please enter a password to continue');
         setAlertType('error');
-        setTimeout(() => {
-          setAlertMessage("");
-      }, 2000);
     } else if (!isValidPassword(password)) {
       setAlertMessage('Please enter a valid password (minimum 6 characters)');
       setAlertType('error');
-      setTimeout(() => {
-        setAlertMessage("");
-    }, 2000);
     } else {
-      // Handle successful login
+      
       setAlertMessage('Login successful');
       setAlertType('success');
 
-      // Clear form fields
       setEmail('');
       setPassword('');
-      setTimeout(() => {
-        setAlertMessage("");
-    }, 2000);
+      navigate('/t_start');
 
-      // You can redirect or perform any other actions after successful login
- 
-      navigate('/start');
     }
   }
 
@@ -79,12 +68,12 @@ const Login = () => {
 
   const handleRegisterClick = () => {
     // Redirect to registration page
-    window.location.href = '/register'; // Change '/register' to your actual registration page URL
+    window.location.href = '/tutor_register'; // Change '/register' to your actual registration page URL
   };
 
   return (
     <>
-      <div style={{ backgroundImage: 'url(' + log + ')', height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
+      <div style={{ backgroundImage: `url('https://wallpaperaccess.com/full/2314950.jpg')`, height: '100vh', width: '100vw', backgroundRepeat: 'no-repeat' }} className="flex justify-center items-center bg-cover">
         <div className="bg-white p-10 rounded-lg shadow-2xl">
           <div className='flex items-center'>
             <div>
@@ -96,7 +85,7 @@ const Login = () => {
           </div>
           {alertMessage && <Alert message={alertMessage} type={alertType} />}
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold mb-8">Student Login</h1>
+            <h1 className="text-3xl font-bold mb-8">Tutor Login</h1>
             <label className="block mb-3">
               Email:
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
@@ -135,4 +124,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Tutor;
