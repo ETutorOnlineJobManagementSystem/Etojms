@@ -60,16 +60,20 @@ router.post('/login', async (req,res) => {
         let token;
         const{email,password} = req.body;
         if(!email || !password){
-            return res.status(400).json("please fill the detils");
+            return res.status(400).json("please fill the details");
         }
         const userLogin = await User.findOne({email:email});
 
         //console.log(userLogin);
         if(userLogin){
             const isMatch = await bcrypt.compare(password,userLogin.password);
-
+            // console.log(isMatch);
             token = await userLogin.generateAuthToken();
             console.log(token);
+            res.cookie("jwtoken",token,{
+                expires:new Date(Date.now()+ 25892000000), //in millisec
+                httpOnly:true
+            });
         if(!isMatch){
             res.status(400).json({error: "Invalid credentials"});
         }else{
@@ -77,11 +81,12 @@ router.post('/login', async (req,res) => {
         }
         }else{
             res.status(400).json({error: "Invalid credentials"});
-        }
-        
+        } 
     }catch(err){
         console.log(err);
     }
 });
+
+
 
 module.exports = router;
