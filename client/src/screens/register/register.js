@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import log from '../../images/log.jpg'; // Replace with the path to your background image
 import { FaGraduationCap } from "react-icons/fa";
-import { Link} from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const Register = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [userType, setUserType] = useState('student'); // Default to student
+  const [user, setUser] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    cpassword: '',
+    usertype: 'student',
+  });
+  const navigate = useNavigate();
 
-  // Error state for input fields
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -19,12 +22,13 @@ const Register = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [loginSuccessful, setLoginSuccessful] = useState('');
 
+  const handlechange = (e) => {
+    setUser(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
 
     // Reset errors
     setFirstNameError('');
@@ -37,40 +41,46 @@ const Register = () => {
     // Validation
     let isValid = true;
 
-    if (!firstName) {
+    if (!user.firstname) {
       setFirstNameError('First name is required');
       isValid = false;
     }
 
-    if (!lastName) {
+    if (!user.lastname) {
       setLastNameError('Last name is required');
       isValid = false;
     }
 
-    if (!email) {
+    if (!user.email) {
       setEmailError('Email is required');
       isValid = false;
     }
 
-    if (!password) {
+    if (!user.password) {
       setPasswordError('Password is required');
       isValid = false;
     }
 
-    if (!confirmPassword) {
+    if (!user.cpassword) {
       setConfirmPasswordError('Please confirm password');
       isValid = false;
     }
 
-    if (password !== confirmPassword) {
+    if (user.password !== user.cpassword) {
       setConfirmPasswordError('Passwords do not match');
       isValid = false;
     }
 
     if (isValid) {
-      // Handle form submission here
-      console.log('Form submitted successfully');
-      setLoginSuccessful('Registration Successful');
+      try {
+        const res = await axios.post("http://localhost:5000/register", user);
+        console.log(res.data);
+        setLoginSuccessful('Registration Successful');
+        navigate('/login');
+      } catch (error) {
+        console.error('Registration Error:', error);
+        setLoginSuccessful('Registration Failed');
+      }
     }
   };
 
@@ -91,32 +101,32 @@ const Register = () => {
             <div className="grid grid-cols-2 gap-4 mb-4">
               <label>
                 First Name:
-                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={`w-full px-3 py-2 placeholder-gray-500 border ${firstNameError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`} />
+                <input type="text" name="firstname" value={user.firstname} onChange={handlechange} className= "w-full px-3 py-2 placeholder-gray-500 border ${firstNameError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 {firstNameError && <span className="text-red-500 text-sm">{firstNameError}</span>}
               </label>
               <label>
                 Last Name:
-                <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className={`w-full px-3 py-2 placeholder-gray-500 border ${lastNameError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`} />
+                <input type="text" name="lastname" value={user.lastname} onChange={handlechange} className="w-full px-3 py-2 placeholder-gray-500 border ${lastNameError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 {lastNameError && <span className="text-red-500 text-sm">{lastNameError}</span>}
               </label>
               <label>
                 Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full px-3 py-2 placeholder-gray-500 border ${emailError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`} />
+                <input type="email" name="email" value={user.email} onChange={handlechange} className="w-full px-3 py-2 placeholder-gray-500 border ${emailError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 {emailError && <span className="text-red-500 text-sm">{emailError}</span>}
               </label>
               <label>
                 Set Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`w-full px-3 py-2 placeholder-gray-500 border ${passwordError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`} />
+                <input type="password" name="password" value={user.password} onChange={handlechange} className="w-full px-3 py-2 placeholder-gray-500 border ${passwordError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 {passwordError && <span className="text-red-500 text-sm">{passwordError}</span>}
               </label>
               <label>
                 Confirm Password:
-                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className={`w-full px-3 py-2 placeholder-gray-500 border ${confirmPasswordError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`} />
+                <input type="password" name="cpassword" value={user.cpassword} onChange={handlechange} className="w-full px-3 py-2 placeholder-gray-500 border ${confirmPasswordError ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 {confirmPasswordError && <span className="text-red-500 text-sm">{confirmPasswordError}</span>}
               </label>
               <label>
                 User:
-                <select value={userType} onChange={(e) => setUserType(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select value={user.usertype} name="usertype" onChange={handlechange} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option value="student">Student</option>
                 </select>
               </label>
@@ -126,7 +136,7 @@ const Register = () => {
               <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
             </div>
             {loginSuccessful && <p className="text-green-600 text-sm mt-2">{loginSuccessful}</p>}
-            <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" >
               Register
             </button>
           </form>

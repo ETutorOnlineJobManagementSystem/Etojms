@@ -14,10 +14,6 @@ const NavBar = () => {
     // Redirect to login page
     window.location.href = '/login'; // Change '/login' to your actual login page URL
   };
-  const handlePaymentClick = () => {
-    // Redirect to login page
-    window.location.href = '/payment'; // Change '/login' to your actual login page URL
-  };
   const handleCartClick = () => {
     // Redirect to login page
     window.location.href = '/cart'; // Change '/login' to your actual login page URL
@@ -25,10 +21,6 @@ const NavBar = () => {
   const handleNotifiClick = () => {
     // Redirect to login page
     window.location.href = '/notifications'; // Change '/login' to your actual login page URL
-  };
-  const handleSessClick = () => {
-    // Redirect to login page
-    window.location.href = '/sessions'; // Change '/login' to your actual login page URL
   };
 
   const toggleCategories = () => {
@@ -70,9 +62,9 @@ const NavBar = () => {
           )}
         </div>
         {/* Sessions */}
-        <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
-        <a href="#" className="text-white font-bold ml-4">My Learning</a>
-        <a href="#" className="text-white font-bold ml-4" onClick={handlePaymentClick}>Payments</a>
+        <a href="/sessions" className="text-white font-bold ml-4" >Sessions</a>
+        <a href="/mylearning" className="text-white font-bold ml-4">My Learning</a>
+        <a href="/payment" className="text-white font-bold ml-4" >Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">

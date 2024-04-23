@@ -27,6 +27,8 @@ import Web from "./screens/components/web.js";
 import Python from "./screens/components/python.js";
 import Java from "./screens/components/java.js";
 import Testing from "./screens/components/testing.js";
+import Mylearning from "./screens/components/mylearning.js";
+import CourseContent from "./screens/components/coursecontent.js";
 
 const App = () => {
   return (
@@ -36,7 +38,6 @@ const App = () => {
       <Route path="/" Component={LoginPage}/>
       <Route path="*" element={<Navigate replace to={"/"} />} />    
         <Route path="/start" Component={StartPage}/>
-       <Route path="/tutorlogin" Component={Tutor}/>
         <Route path="/login" Component={Login} />
         <Route path="/register" Component={Register} />
         <Route path="/forgetpassword" Component={Forgetpassword}/>
@@ -46,27 +47,30 @@ const App = () => {
         <Route path="/python" Component={Python}/>
         <Route path="/java" Component={Java}/>
         <Route path="/testing" Component={Testing}/>
-        
+        <Route path="/mylearning" Component={Mylearning}/>
         <Route path="/notifications" Component={NotificationPage}/>
         <Route path="/sessions" Component={SessionsPage}/>
         <Route path="/" element={<CourseCard />} />
         <Route path="/enroll" element={<Enroll />} />
         <Route path="/payment" Component={PaymentPage}/>
-        <Route path="thanks" Component = {ThanksPage}/>
-        <Route path="tutor_register" Component={Tutor_Register}/>
-        <Route path="t_start" Component={TutorHomePage}/>
-        <Route path="dashboard" Component={TutorDashboard}/>
-        <Route path="lesson_mat" Component={Lesson}/>
-        <Route path="profile_edit" Component={ProfilePage}/>
-        <Route path="info" Component={Info}/>
-        <Route path="info" Component={Analytics}/>
-        <Route path="info" Component={MaterialCard}/>
-        <Route path="info" Component={MaterialList}/>
-        <Route path="info" Component={MaterialPreview}/>
-        <Route path="info" Component={SearchBar}/>
-        <Route path="info" Component={FilterOptions}/>
-        <Route path="info" Component={FolderTree}/>
-        <Route path="info" Component={UploadButton}/>
+        <Route path="/thanks" Component = {ThanksPage}/>
+        <Route path="/coursecontent" Component = {CourseContent}/>
+
+        <Route path="/tutor_register" Component={Tutor_Register}/>
+        <Route path="/tutorlogin" Component={Tutor}/>
+        <Route path="/t_start" Component={TutorHomePage}/>
+        <Route path="/dashboard" Component={TutorDashboard}/>
+        <Route path="/lesson_mat" Component={Lesson}/>
+        <Route path="/profile_edit" Component={ProfilePage}/>
+        <Route path="/info" Component={Info}/>
+        <Route path="/info" Component={Analytics}/>
+        <Route path="/info" Component={MaterialCard}/>
+        <Route path="/info" Component={MaterialList}/>
+        <Route path="/info" Component={MaterialPreview}/>
+        <Route path="/info" Component={SearchBar}/>
+        <Route path="/info" Component={FilterOptions}/>
+        <Route path="/info" Component={FolderTree}/>
+        <Route path="/info" Component={UploadButton}/>
       </Routes>
     </>
   );
