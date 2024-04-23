@@ -48,13 +48,13 @@ const Enroll = () => {
         setAlertMessage('');
       }, 2000);
     }
-    else if (!courseDetails) {
-      setAlertMessage("Please Enter Course Type");
-      setAlertType('error');
-      setTimeout(() => {
-        setAlertMessage('');
-      }, 2000);
-    }
+    // else if (!courseDetails) {
+    //   setAlertMessage("Please Enter Course Type");
+    //   setAlertType('error');
+    //   setTimeout(() => {
+    //     setAlertMessage('');
+    //   }, 2000);
+    // }
     else {
       // Handle successful submission
       setAlertMessage('Payment Page');
@@ -94,7 +94,7 @@ const Enroll = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="course-details" className="block text-gray-700 font-semibold mb-2">Course Details</label>
             <textarea
               id="course-details"
@@ -105,7 +105,7 @@ const Enroll = () => {
               placeholder="Enter course details"
               required
             />
-          </div>
+          </div> */}
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">Course Type</label>
             <div className="flex items-center">

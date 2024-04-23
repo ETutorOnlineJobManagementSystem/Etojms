@@ -3,21 +3,21 @@ import NavBar from '../components/navbar';
 import CourseCard from '../components/cardbox'; // Assuming renamed CourseCard component
 import FeaturedTopicsPage from '../components/featuredtopics';
 import Footer from '../components/footer';
-import {useState} from 'react';
+import { useState } from 'react';
 
 const Web = () => {
   const [Course, Setcourse] = useState([
     {
       img: "https://www.freecodecamp.org/news/content/images/size/w2000/2021/06/javascriptfull.png",
       name: "Javascript for beginners",
-      text: "This course gets you started with an introduction to JavaScript, it gets you started with basic functionality such as creating functions, creating variables, and calling these lines of code from your standard HTML pages and more. Enroll now!",
+      text: "This course gets you started with an introduction to JavaScript,creating functions, creating variables, and calling these lines of code from your standard HTML pages and more. Enroll now!",
       time: "20 hrs",
       cost: "Rs/-2999",
     },
     {
       img: "https://www.tesrokerala.org/wp-content/uploads/2021/06/Full-Stack-development.png",
       name: "Complete FullStack Course",
-      text: "Full stack development is the process of designing, testing, and deploying a complete web application from start to finish. It involves working with various technologies and tools, including front-end web development, back-end web development, and database development. Enroll now!",
+      text: "Full stack development is the process of designing, testing, and deploying a complete web application from start to finish. It involves working with various technologies and tools, . Enroll now!",
       time: "19 hrs",
       cost: "Rs/-1999",
     },
@@ -46,9 +46,9 @@ const Web = () => {
       </div>
 
       <div className="flex-grow justify-center px-4 py-4"> {/* Center the course cards */}
-        <div className="grid grid-cols-3 gap-4 "> {/* Grid Layout */}
+        <div className="grid grid-cols-3 gap-4"> {/* Grid Layout */}
           {Course.map((course, index) => (
-            <div key={index} className="rounded-md p-2 ">
+            <div key={index} className="rounded-md p-2">
               <CourseCard
                 img={course.img}
                 name={course.name}

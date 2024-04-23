@@ -1,65 +1,77 @@
 // Login.js
 import React, { useState } from 'react';
-import log from '../../images/log.jpg'; // Replace with the path to your background image
+import log from '../../images/log.jpg'; 
 import { FaGraduationCap } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'; 
-import Alert from './Alert'; // Import the Alert component
+import Alert from './Alert'; 
+import axios from "axios";
 
 const Login = () => {
+  const [login_user,setUser] = useState(
+    {
+      email:"",
+      password:"",
+    }
+  );
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+  const [message,setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email && !password) {
+    if (!login_user.email && !login_user.password) {
       setAlertMessage('Please enter all details');
       setAlertType('error');
       setTimeout(() => {
         setAlertMessage("");
     }, 2000);
-    } else if (!email) {
+    } else if (!login_user.email) {
         setAlertMessage('Please enter email to continue');
         setAlertType('error');
         setTimeout(() => {
           setAlertMessage("");
       }, 2000);
-    } else if (!isValidEmail(email)) {
+    } else if (!isValidEmail(login_user.email)) {
       setAlertMessage('Please enter a valid email');
       setAlertType('error');
       setTimeout(() => {
         setAlertMessage("");
     }, 2000);
-    } else if (!password) {
+    } else if (!login_user.password) {
         setAlertMessage('Please enter a password to continue');
         setAlertType('error');
         setTimeout(() => {
           setAlertMessage("");
       }, 2000);
-    } else if (!isValidPassword(password)) {
+    } else if (!isValidPassword(login_user.password)) {
       setAlertMessage('Please enter a valid password (minimum 6 characters)');
       setAlertType('error');
       setTimeout(() => {
         setAlertMessage("");
     }, 2000);
     } else {
-      // Handle successful login
-      setAlertMessage('Login successful');
-      setAlertType('success');
-
-      // Clear form fields
-      setEmail('');
-      setPassword('');
-      setTimeout(() => {
-        setAlertMessage("");
+      try{
+        const res = await axios.post("http://localhost:5000/login",login_user);
+        console.log(res.data);
+        setAlertMessage("Login Succesful");
+        navigate('/start');
+      }   
+      catch(error){
+        setMessage("Invalid Credentials");
+       console.error("Registration error",error);
+       setTimeout(() => {
+        setMessage("");
     }, 2000);
-
-      // You can redirect or perform any other actions after successful login
- 
-      navigate('/start');
+      }  
     }
   }
 
@@ -78,9 +90,8 @@ const Login = () => {
   };
 
   const handleRegisterClick = () => {
-    // Redirect to registration page
-    window.location.href = '/register'; // Change '/register' to your actual registration page URL
-  };
+    window.location.href = '/register';
+  }
 
   return (
     <>
@@ -99,11 +110,11 @@ const Login = () => {
             <h1 className="text-3xl font-bold mb-8">Student Login</h1>
             <label className="block mb-3">
               Email:
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <input type="email" name="email" value={login_user.email} onChange={handleChange} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </label>
             <label className="block mb-3">
               Password:
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <input type="password" name="password" value={login_user.password} onChange={handleChange} className="w-full px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </label>
             <div className='flex'>
                 <input type="checkbox" className="mr-1" />
@@ -122,8 +133,6 @@ const Login = () => {
                   </span>
                 </div>
               </div>
-            
-
             
             <button type="submit" className="block w-full py-2 mt-6 bg-blue-600 hover:bg-blue-400 rounded-md text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
               Login

@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 const CourseCard = (props) => {
   const navigate = useNavigate(); // Get navigate function
 
-  const handleEnrollClick = (event) => {
+  const handleExploreClick = (event) => {
     event.preventDefault(); // Prevent default form submission
-    navigate('/enroll');
+    navigate('/coursecontent');
   };
   
 
@@ -34,9 +34,9 @@ const CourseCard = (props) => {
           <p className="text-green-600 font-semibold">{props.cost}</p>
           <button
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
-            onClick={handleEnrollClick}
+            onClick={handleExploreClick}
           >
-            Enroll Now
+            Explore!
           </button>
         </div>
       </div>
