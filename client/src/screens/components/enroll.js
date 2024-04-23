@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCourseContext } from '../../context/CourseContext';
 
 const Alert = ({ message, type }) => {
   const alertClasses = {
@@ -17,8 +18,7 @@ const Alert = ({ message, type }) => {
 
 const Enroll = () => {
   const navigate = useNavigate();
-  const [courseName, setCourseName] = useState('');
-  const [courseDetails, setCourseDetails] = useState('');
+  const { courseName, setCourseName, courseDetails, setCourseDetails } = useCourseContext();
   const [courseType, setCourseType] = useState('live'); // Default to live learning
   const [slotTiming, setSlotTiming] = useState('');
   const [agreed, setAgreed] = useState(false);
@@ -48,13 +48,13 @@ const Enroll = () => {
         setAlertMessage('');
       }, 2000);
     }
-    // else if (!courseDetails) {
-    //   setAlertMessage("Please Enter Course Type");
-    //   setAlertType('error');
-    //   setTimeout(() => {
-    //     setAlertMessage('');
-    //   }, 2000);
-    // }
+    else if (!courseDetails) {
+      setAlertMessage("Please Enter Course Type");
+      setAlertType('error');
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 2000);
+    }
     else {
       // Handle successful submission
       setAlertMessage('Payment Page');
@@ -76,7 +76,7 @@ const Enroll = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex justify-center items-center " style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/001/937/625/original/online-education-application-learning-worldwide-on-phone-mobile-website-background-social-distance-concept-the-classroom-training-course-library-illustration-flat-design-vector.jpg')` }}>
+    <div className="bg-gray-100 min-h-screen flex justify-center items-center" style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/001/937/625/original/online-education-application-learning-worldwide-on-phone-mobile-website-background-social-distance-concept-the-classroom-training-course-library-illustration-flat-design-vector.jpg')` }}>
       <div className="max-w-md w-full bg-white shadow-md rounded-md p-8">
         <h2 className="text-xl font-bold mb-4">Enroll in a Course</h2>
         {alertMessage && <Alert message={alertMessage} type={alertType} />}
@@ -92,9 +92,10 @@ const Enroll = () => {
               className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Enter course name"
               required
+              disabled
             />
           </div>
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label htmlFor="course-details" className="block text-gray-700 font-semibold mb-2">Course Details</label>
             <textarea
               id="course-details"
@@ -104,8 +105,9 @@ const Enroll = () => {
               className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Enter course details"
               required
+              disabled
             />
-          </div> */}
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">Course Type</label>
             <div className="flex items-center">

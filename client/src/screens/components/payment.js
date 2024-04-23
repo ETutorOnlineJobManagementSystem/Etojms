@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { useCourseContext } from '../../context/CourseContext';
 
 const PaymentPage = () => {
+  const { enrollingCourse, enrolledCourses, setEnrolledCourses } = useCourseContext()
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -18,14 +21,15 @@ const PaymentPage = () => {
 
   };
 
-  const handleClick=()=>{
-   if(agreeTerms){
-    navigate('/thanks');
-   }
+  const handleClick = () => {
+    if (agreeTerms) {
+      setEnrolledCourses([...enrolledCourses, { ...enrollingCourse, progress: 0, id: uuidv4() }])
+      navigate('/thanks');
+    }
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen flex justify-center items-center" style={{backgroundImage: `url('https://wallpaperaccess.com/full/4597136.jpg')`}}>
+    <div className="bg-gray-200 min-h-screen flex justify-center items-center" style={{ backgroundImage: `url('https://wallpaperaccess.com/full/4597136.jpg')`}}>
       <div className="max-w-md bg-white p-8 shadow-md rounded-md">
         <h1 className="text-3xl font-bold text-blue text-center mb-8">Payment</h1>
         <form onSubmit={handlePayment}>

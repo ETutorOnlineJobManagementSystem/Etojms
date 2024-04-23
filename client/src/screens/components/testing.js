@@ -12,14 +12,14 @@ const Testing = () => {
       name: "Appium -Mobile Testing(Android/IOS) from Scratch+Frameworks",
       text: "By the end of this course you will be able to automate any (Native,Hybrid,Web) Apps in Android/IOS using Appium,Design the Industry Standard Mobile framework from Scratch which is compatible for both Android and IOS Platforms. Enroll now!",
       time: "23 hrs",
-      cost: "Rs/-2999",
+      cost: "Rs. 2999",
     },
     {
       img: "https://img-b.udemycdn.com/course/750x422/675248_b27e_9.jpg",
       name: "WebServices/RestAPI Testing with SoapUI+RealTime Projects",
       text: "By end of this course you will be familiar in testing web services (both SOAP based and REST Services) manually and automate with Groovy scripting. The course has been prepared in such a way that you can learn this course starting from basics to advanced topics in a progressive way. Enroll now!",
       time: "19 hrs",
-      cost: "Rs/-1999",
+      cost: "Rs. 1999",
     },
   ]);
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaUserCircle, FaShoppingCart, FaBell, FaSearch, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { FaGlobe, FaCoffee, FaPython, FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,6 +15,10 @@ const NavBar = () => {
     // Redirect to login page
     window.location.href = '/login'; // Change '/login' to your actual login page URL
   };
+  const handlePaymentClick = () => {
+    // Redirect to login page
+    window.location.href = '/payment'; // Change '/login' to your actual login page URL
+  };
   const handleCartClick = () => {
     // Redirect to login page
     window.location.href = '/cart'; // Change '/login' to your actual login page URL
@@ -21,6 +26,10 @@ const NavBar = () => {
   const handleNotifiClick = () => {
     // Redirect to login page
     window.location.href = '/notifications'; // Change '/login' to your actual login page URL
+  };
+  const handleSessClick = () => {
+    // Redirect to login page
+    window.location.href = '/sessions'; // Change '/login' to your actual login page URL
   };
 
   const toggleCategories = () => {
@@ -32,7 +41,7 @@ const NavBar = () => {
       {/* Left section */}
       <div className="flex items-center">
         {/* Site Name */}
-        <h1 className="text-white font-bold text-4xl p-3">E-Tutor</h1>
+        <Link to="/start"><h1 className="text-white font-bold text-4xl p-3">E-Tutor</h1></Link>
         {/* Courses */}
         <a href="#" className="text-white ml-4">Courses</a>
         {/* Categories with dropdown */}
@@ -62,9 +71,9 @@ const NavBar = () => {
           )}
         </div>
         {/* Sessions */}
-        <a href="/sessions" className="text-white font-bold ml-4" >Sessions</a>
-        <a href="/mylearning" className="text-white font-bold ml-4">My Learning</a>
-        <a href="/payment" className="text-white font-bold ml-4" >Payments</a>
+        <a href="#" className="text-white font-bold ml-4" onClick={handleSessClick}>Sessions</a>
+        <Link to="/mylearning"><a className="text-white font-bold ml-4">My Learning</a></Link>
+        <a href="#" className="text-white font-bold ml-4" onClick={handlePaymentClick}>Payments</a>
       </div>
       {/* Search Bar */}
       <div className="flex items-center mx-4">
