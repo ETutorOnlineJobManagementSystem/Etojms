@@ -12,28 +12,28 @@ const Java = () => {
       name: "Java Programming for Complete Beginners",
       text: "If you've never programmed a computer before, or if you want to quickly learn Java, this is a perfect course for you. Basics of Designing a Class - Class, Object, State and Behavior. Deciding State and Constructors. Java Abstract Class and Interfaces. Enroll now!",
       time: "20 hrs",
-      cost: "Rs/-2999",
+      cost: "Rs. 2999",
     },
     {
       img: "https://favtutor.com/resources/images/uploads/Java_Projects_for_Beginners.jpg",
       name: "Project Development using JAVA for Beginners-2024",
       text: "The course is very comprehensive and will be constantly updated. With this course you will be able to understand Java 12 features very easily. So, this course covers each topic in details and is focused to break down topics with simplified examples. Enroll now!",
       time: "19 hrs",
-      cost: "Rs/-1999",
+      cost: "Rs. 1999",
     },
     {
       img: "https://img-c.udemycdn.com/course/750x422/4166416_66ba_5.jpg",
       name: "Selenium WebDriver with Java-Basics to Advanced+Frameworks",
       text: "By the end of this course,You will be Mastered on Selenium Webdriver with strong Core JAVA basics. Enroll now!",
       time: "80 hrs",
-      cost: "Rs/-4999",
+      cost: "Rs. 4999",
     },
     {
       img: "https://miro.medium.com/v2/resize:fit:500/1*pu_q-NQV_EnIHBgHdZsrXQ.jpeg",
       name: "Java In-Depth:Become a Complete Java Engineer!",
       text: "An industry-vetted, comprehensive curriculum to help you master Core & Advanced Java including JVM internals.Get real-world experience by developing an instructor-led Java EE-based Web application. Enroll now!",
       time: "40 hrs",
-      cost: "Rs/-3999",
+      cost: "Rs. 3999",
     },
   ]);
 

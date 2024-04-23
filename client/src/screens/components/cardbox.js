@@ -1,15 +1,20 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useCourseContext } from '../../context/CourseContext';
 
 const CourseCard = (props) => {
   const navigate = useNavigate(); // Get navigate function
+  const { setCourseName, setCourseDetails, setEnrollingCourse } = useCourseContext()
 
-  const handleExploreClick = (event) => {
+  const handleEnrollClick = (event) => {
     event.preventDefault(); // Prevent default form submission
-    navigate('/coursecontent');
+    setCourseName(props.name)
+    setCourseDetails(props.text)
+    setEnrollingCourse(props)
+    navigate('/enroll');
   };
-  
+
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 w-100 h-1000">
@@ -34,9 +39,9 @@ const CourseCard = (props) => {
           <p className="text-green-600 font-semibold">{props.cost}</p>
           <button
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
-            onClick={handleExploreClick}
+            onClick={handleEnrollClick}
           >
-            Explore!
+            Enroll Now
           </button>
         </div>
       </div>
