@@ -1,11 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { FaUserCircle, FaShoppingCart, FaBell, FaSearch, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { FaGlobe, FaCoffee, FaPython, FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [user, setUserData] = useState(null);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = Cookies.get('token');
+
+      if (!token) return;
+
+      try {
+        const response = await axios.get('http://localhost:5000/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -30,6 +54,10 @@ const NavBar = () => {
   const handleSessClick = () => {
     // Redirect to login page
     window.location.href = '/sessions'; // Change '/login' to your actual login page URL
+  };
+  const handleLogoutClick = () => {
+    Cookies.remove('token');
+    setUserData(null);
   };
 
   const toggleCategories = () => {
@@ -95,17 +123,11 @@ const NavBar = () => {
         </button>
         {/* Profile */}
         <div className="relative">
-          <button onClick={handleLoginClick} className="text-white flex items-center">
-            <FaUserCircle className="inline-block mr-1" />
-            Login / Signup
-          </button>
-          {/* Dropdown menu */}
-          {isDropdownOpen && (
-            <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-              <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
-            </div>
-          )}
+           {/* Logged-in user section */}
+           <div className="text-white">
+           {user && <p>Welcome, {user.firstname}</p>}
+           </div>
+     
         </div>
       </div>
     </nav>

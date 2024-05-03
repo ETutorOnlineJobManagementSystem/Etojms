@@ -5,6 +5,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'; 
 import Alert from './Alert'; 
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [login_user,setUser] = useState(
@@ -64,6 +65,7 @@ const Login = () => {
         console.log(res.data);
         setAlertMessage("Login Succesful");
         navigate('/start');
+        Cookies.set('token',res.data.token);
       }   
       catch(error){
         setMessage("Invalid Credentials");

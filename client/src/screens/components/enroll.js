@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import { useCourseContext } from '../../context/CourseContext';
+
 
 const Alert = ({ message, type }) => {
   const alertClasses = {
@@ -18,14 +21,37 @@ const Alert = ({ message, type }) => {
 
 const Enroll = () => {
   const navigate = useNavigate();
+  const [users, setUserData] = useState(null);
   const { courseName, setCourseName, courseDetails, setCourseDetails } = useCourseContext();
   const [courseType, setCourseType] = useState('live'); // Default to live learning
   const [slotTiming, setSlotTiming] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = Cookies.get('token');
 
-  const handleSubmit = (event) => {
+      if (!token) return;
+
+      try {
+        const response = await axios.get('http://localhost:5000/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    console.log("Enrolled successfully");
+    fetchUserData();
+  }, []);
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!agreed) {
       setAlertMessage('Please agree to terms and conditions');
@@ -56,6 +82,30 @@ const Enroll = () => {
       }, 2000);
     }
     else {
+      const course = {
+        user:users.firstname,
+        courseName:courseName,
+        courseDetails:courseDetails,
+        courseType:courseType,
+        slotTiming:slotTiming,
+        agreed:agreed
+
+      }
+      try {
+        const res = await axios.post("http://localhost:5000/enroll", course);
+        console.log(res.data);
+        setAlertMessage('Enrolled Successfully');
+        navigate('/payment');
+      } catch (error) {
+        console.error('Enroll Error:', error);
+        setAlertMessage('Enroll Failed');
+      }
+      console.log(course);
+      // axios.post('/api/course', course,{
+      //   headers:{
+      //     Authorization: `Bearer ${Cookies.get('token')}`
+      //   }
+      // });
       // Handle successful submission
       setAlertMessage('Payment Page');
       setAlertType('success');
@@ -142,9 +192,9 @@ const Enroll = () => {
                 className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
               >
                 <option value="">Select slot timing</option>
-                <option value="morning">Morning (9am - 12pm)</option>
-                <option value="afternoon">Afternoon (2pm - 6pm)</option>
-                <option value="evening">Evening (7pm - 10pm)</option>
+                <option value="Morning (9am - 12pm)">Morning (9am - 12pm)</option>
+                <option value="Afternoon (2pm - 6pm)">Afternoon (2pm - 6pm)</option>
+                <option value="Evening (7pm - 10pm)">Evening (7pm - 10pm)</option>
               </select>
             </div>
           )}
