@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 
 dotenv.config({path:'./config.env'});
@@ -11,9 +12,12 @@ dotenv.config({path:'./config.env'});
 app.use(express.json());
 app.use(cors());
 app.use(require('./router/auth'));
+app.use(cookieParser());
 
 
-//onst User = require('.model/userSchema');
+
+const User = require('./model/userSchema');
+const Enroll = require('./model/enrollSchema');
 
 mongoose.connect("mongodb+srv://admin-mahendra:Mahendra123@cluster0.l0a5t5v.mongodb.net/Etutor")
 .then(() => console.log('Connected to MongoDB'))
